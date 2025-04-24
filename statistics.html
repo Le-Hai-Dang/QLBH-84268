@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Spa Mini - Thống Kê</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/statistics.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>Spa Mini</h2>
+            </div>
+            <nav class="menu">
+                <ul>
+                    <li data-page="dashboard"><i class="fas fa-tachometer-alt"></i> Tổng quan</li>
+                    <li data-page="customers"><i class="fas fa-users"></i> Khách hàng</li>
+                    <li data-page="appointments"><i class="fas fa-calendar-alt"></i> Lịch hẹn</li>
+                    <li data-page="staff"><i class="fas fa-user-tie"></i> Nhân viên</li>
+                    <li class="active" data-page="statistics"><i class="fas fa-chart-bar"></i> Thống kê</li>
+                </ul>
+            </nav>
+            <div class="user-info">
+                <img src="img/avatar-default.png" alt="User Avatar">
+                <div>
+                    <p class="name">Admin</p>
+                    <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="date-filter">
+                    <label for="dateRangeSelect">Thời gian:</label>
+                    <select id="dateRangeSelect">
+                        <option value="week">Tuần này</option>
+                        <option value="month" selected>Tháng này</option>
+                        <option value="quarter">Quý này</option>
+                        <option value="year">Năm nay</option>
+                        <option value="custom">Tùy chỉnh</option>
+                    </select>
+                    <div class="custom-date-range" id="customDateRange">
+                        <input type="date" id="startDate" value="2023-05-01">
+                        <span>đến</span>
+                        <input type="date" id="endDate" value="2023-05-31">
+                        <button id="applyDateBtn">Áp dụng</button>
+                    </div>
+                </div>
+                <div class="date-time">
+                    <span id="currentDate">10/05/2023</span>
+                    <span id="currentTime">15:30</span>
+                </div>
+            </header>
+
+            <!-- Statistics Content -->
+            <div class="content-container">
+                <div class="page-header">
+                    <h1>Thống kê</h1>
+                    <button class="export-button" id="exportStatsBtn">
+                        <i class="fas fa-file-export"></i> Xuất báo cáo
+                    </button>
+                </div>
+
+                <div class="stats-overview">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Tổng khách hàng</h3>
+                            <p class="stat-count">120</p>
+                            <p class="stat-trend positive"><i class="fas fa-arrow-up"></i> 15% so với tháng trước</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Lịch hẹn</h3>
+                            <p class="stat-count">85</p>
+                            <p class="stat-trend positive"><i class="fas fa-arrow-up"></i> 8% so với tháng trước</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-redo"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Khách quay lại</h3>
+                            <p class="stat-count">45</p>
+                            <p class="stat-trend positive"><i class="fas fa-arrow-up"></i> 12% so với tháng trước</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-clock"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>Giờ phục vụ</h3>
+                            <p class="stat-count">215</p>
+                            <p class="stat-trend negative"><i class="fas fa-arrow-down"></i> 3% so với tháng trước</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <div class="chart-card">
+                        <h2>Khách hàng theo ngày</h2>
+                        <div class="chart-area">
+                            <canvas id="customersByDayChart"></canvas>
+                            <!-- Chart sẽ được tạo bằng JavaScript -->
+                            <div class="placeholder-chart">
+                                <div class="chart-columns">
+                                    <div class="chart-column" style="height: 40%;" data-value="8"></div>
+                                    <div class="chart-column" style="height: 60%;" data-value="12"></div>
+                                    <div class="chart-column" style="height: 30%;" data-value="6"></div>
+                                    <div class="chart-column" style="height: 80%;" data-value="16"></div>
+                                    <div class="chart-column" style="height: 65%;" data-value="13"></div>
+                                    <div class="chart-column" style="height: 90%;" data-value="18"></div>
+                                    <div class="chart-column" style="height: 45%;" data-value="9"></div>
+                                </div>
+                                <div class="chart-labels">
+                                    <span>T2</span>
+                                    <span>T3</span>
+                                    <span>T4</span>
+                                    <span>T5</span>
+                                    <span>T6</span>
+                                    <span>T7</span>
+                                    <span>CN</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <h2>Dịch vụ sử dụng nhiều nhất</h2>
+                        <div class="chart-area">
+                            <canvas id="topServicesChart"></canvas>
+                            <!-- Chart sẽ được tạo bằng JavaScript -->
+                            <div class="placeholder-chart">
+                                <div class="pie-chart">
+                                    <div class="pie-segment" style="--percentage: 40%; --color: #4e73df;">
+                                        <span class="pie-label">Massage toàn thân</span>
+                                    </div>
+                                    <div class="pie-segment" style="--percentage: 25%; --color: #1cc88a;">
+                                        <span class="pie-label">Massage mặt</span>
+                                    </div>
+                                    <div class="pie-segment" style="--percentage: 20%; --color: #36b9cc;">
+                                        <span class="pie-label">Chăm sóc da</span>
+                                    </div>
+                                    <div class="pie-segment" style="--percentage: 15%; --color: #f6c23e;">
+                                        <span class="pie-label">Spa trọn gói</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <div class="chart-card">
+                        <h2>Khách hàng mới vs Khách quay lại</h2>
+                        <div class="chart-area">
+                            <canvas id="customerRetentionChart"></canvas>
+                            <!-- Chart sẽ được tạo bằng JavaScript -->
+                            <div class="placeholder-chart">
+                                <div class="stacked-chart">
+                                    <div class="stacked-column">
+                                        <div class="stack-segment new" style="height: 60%;">15</div>
+                                        <div class="stack-segment returning" style="height: 40%;">10</div>
+                                        <div class="stack-label">T1</div>
+                                    </div>
+                                    <div class="stacked-column">
+                                        <div class="stack-segment new" style="height: 52%;">13</div>
+                                        <div class="stack-segment returning" style="height: 48%;">12</div>
+                                        <div class="stack-label">T2</div>
+                                    </div>
+                                    <div class="stacked-column">
+                                        <div class="stack-segment new" style="height: 44%;">11</div>
+                                        <div class="stack-segment returning" style="height: 56%;">14</div>
+                                        <div class="stack-label">T3</div>
+                                    </div>
+                                    <div class="stacked-column">
+                                        <div class="stack-segment new" style="height: 40%;">10</div>
+                                        <div class="stack-segment returning" style="height: 60%;">15</div>
+                                        <div class="stack-label">T4</div>
+                                    </div>
+                                    <div class="stacked-column">
+                                        <div class="stack-segment new" style="height: 32%;">8</div>
+                                        <div class="stack-segment returning" style="height: 68%;">17</div>
+                                        <div class="stack-label">T5</div>
+                                    </div>
+                                </div>
+                                <div class="chart-legend">
+                                    <div class="legend-item">
+                                        <div class="legend-color new"></div>
+                                        <span>Khách mới</span>
+                                    </div>
+                                    <div class="legend-item">
+                                        <div class="legend-color returning"></div>
+                                        <span>Khách quay lại</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart-card">
+                        <h2>Lịch hẹn theo giờ trong ngày</h2>
+                        <div class="chart-area">
+                            <canvas id="appointmentsByHourChart"></canvas>
+                            <!-- Chart sẽ được tạo bằng JavaScript -->
+                            <div class="placeholder-chart">
+                                <div class="line-chart">
+                                    <svg width="100%" height="200" viewBox="0 0 400 200" preserveAspectRatio="none">
+                                        <polyline
+                                            points="0,180 50,150 100,100 150,80 200,60 250,90 300,120 350,150 400,130"
+                                            fill="none"
+                                            stroke="#4e73df"
+                                            stroke-width="3"
+                                        />
+                                    </svg>
+                                    <div class="line-labels">
+                                        <span>9:00</span>
+                                        <span>11:00</span>
+                                        <span>13:00</span>
+                                        <span>15:00</span>
+                                        <span>17:00</span>
+                                        <span>19:00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="data-table-container">
+                    <h2>Top 10 khách hàng thường xuyên</h2>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Khách hàng</th>
+                                <th>Số lần đến spa</th>
+                                <th>Lần gần nhất</th>
+                                <th>Dịch vụ yêu thích</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>KH003</td>
+                                <td>Trần Minh Anh</td>
+                                <td>12</td>
+                                <td>05/05/2023</td>
+                                <td>Chăm sóc da</td>
+                            </tr>
+                            <tr>
+                                <td>KH007</td>
+                                <td>Nguyễn Thanh Hà</td>
+                                <td>10</td>
+                                <td>08/05/2023</td>
+                                <td>Massage toàn thân</td>
+                            </tr>
+                            <tr>
+                                <td>KH015</td>
+                                <td>Lê Thị Lan</td>
+                                <td>9</td>
+                                <td>02/05/2023</td>
+                                <td>Massage mặt</td>
+                            </tr>
+                            <tr>
+                                <td>KH022</td>
+                                <td>Phạm Văn Đức</td>
+                                <td>8</td>
+                                <td>06/05/2023</td>
+                                <td>Spa trọn gói</td>
+                            </tr>
+                            <tr>
+                                <td>KH009</td>
+                                <td>Hoàng Thị Mai</td>
+                                <td>7</td>
+                                <td>01/05/2023</td>
+                                <td>Chăm sóc da</td>
+                            </tr>
+                            <tr>
+                                <td>KH031</td>
+                                <td>Vũ Minh Tuấn</td>
+                                <td>7</td>
+                                <td>09/05/2023</td>
+                                <td>Massage vai gáy</td>
+                            </tr>
+                            <tr>
+                                <td>KH018</td>
+                                <td>Trần Thị Hồng</td>
+                                <td>6</td>
+                                <td>04/05/2023</td>
+                                <td>Massage mặt</td>
+                            </tr>
+                            <tr>
+                                <td>KH042</td>
+                                <td>Nguyễn Văn Bình</td>
+                                <td>6</td>
+                                <td>07/05/2023</td>
+                                <td>Massage toàn thân</td>
+                            </tr>
+                            <tr>
+                                <td>KH025</td>
+                                <td>Đỗ Thị Hương</td>
+                                <td>5</td>
+                                <td>03/05/2023</td>
+                                <td>Chăm sóc da</td>
+                            </tr>
+                            <tr>
+                                <td>KH037</td>
+                                <td>Lê Văn Nam</td>
+                                <td>5</td>
+                                <td>10/05/2023</td>
+                                <td>Massage toàn thân</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/statistics.js"></script>
+</body>
+</html>

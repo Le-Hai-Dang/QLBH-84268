@@ -1,0 +1,10 @@
+Đây là vị trí tệp hình ảnh avatar-default.png.
+
+Trong môi trường thực tế, bạn nên sử dụng một hình ảnh PNG thực sự cho avatar mặc định.
+
+Vì trình soạn thảo hiện tại không cho phép tạo/tải lên hình ảnh, bạn có thể:
+1. Thêm hình ảnh avatar mặc định vào thư mục img/
+2. Sử dụng hình ảnh từ CDN bằng cách thay thế đường dẫn trong code (src="img/avatar-default.png") thành URL trực tiếp đến hình ảnh
+3. Sử dụng FontAwesome hoặc các biểu tượng khác thay vì hình ảnh
+
+Gợi ý đường dẫn hình ảnh từ CDN: https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png 

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Spa Mini - Lịch Hẹn</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/appointments.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>Spa Mini</h2>
+            </div>
+            <nav class="menu">
+                <ul>
+                    <li data-page="dashboard"><i class="fas fa-tachometer-alt"></i> Tổng quan</li>
+                    <li data-page="customers"><i class="fas fa-users"></i> Khách hàng</li>
+                    <li class="active" data-page="appointments"><i class="fas fa-calendar-alt"></i> Lịch hẹn</li>
+                    <li data-page="staff"><i class="fas fa-user-tie"></i> Nhân viên</li>
+                    <li data-page="statistics"><i class="fas fa-chart-bar"></i> Thống kê</li>
+                </ul>
+            </nav>
+            <div class="user-info">
+                <img src="img/avatar-default.png" alt="User Avatar">
+                <div>
+                    <p class="name">Admin</p>
+                    <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="appointmentSearch" placeholder="Tìm kiếm lịch hẹn...">
+                </div>
+                <div class="date-time">
+                    <span id="currentDate">10/05/2023</span>
+                    <span id="currentTime">15:30</span>
+                </div>
+            </header>
+
+            <!-- Appointments Content -->
+            <div class="content-container">
+                <div class="page-header">
+                    <h1>Quản lý lịch hẹn</h1>
+                    <button class="add-button" id="addAppointmentBtn">
+                        <i class="fas fa-plus"></i> Thêm lịch hẹn
+                    </button>
+                </div>
+
+                <div class="appointment-view-options">
+                    <button class="view-btn active" data-view="week">Tuần</button>
+                    <button class="view-btn" data-view="day">Ngày</button>
+                    <button class="view-btn" data-view="list">Danh sách</button>
+                </div>
+
+                <div class="calendar-navigation">
+                    <button id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+                    <h2 id="currentPeriod">Tuần 10/05/2023 - 16/05/2023</h2>
+                    <button id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+                    <button id="todayBtn">Hôm nay</button>
+                </div>
+
+                <!-- Week View -->
+                <div class="calendar-view week-view active" id="weekView">
+                    <div class="calendar-header">
+                        <div class="time-column">Giờ</div>
+                        <div class="day-column">Thứ 2<br>10/05</div>
+                        <div class="day-column">Thứ 3<br>11/05</div>
+                        <div class="day-column">Thứ 4<br>12/05</div>
+                        <div class="day-column">Thứ 5<br>13/05</div>
+                        <div class="day-column">Thứ 6<br>14/05</div>
+                        <div class="day-column">Thứ 7<br>15/05</div>
+                        <div class="day-column">CN<br>16/05</div>
+                    </div>
+                    <div class="calendar-body">
+                        <div class="time-slots">
+                            <div class="time-slot">9:00</div>
+                            <div class="time-slot">10:00</div>
+                            <div class="time-slot">11:00</div>
+                            <div class="time-slot">12:00</div>
+                            <div class="time-slot">13:00</div>
+                            <div class="time-slot">14:00</div>
+                            <div class="time-slot">15:00</div>
+                            <div class="time-slot">16:00</div>
+                            <div class="time-slot">17:00</div>
+                            <div class="time-slot">18:00</div>
+                        </div>
+                        <div class="day-column-content">
+                            <!-- Monday -->
+                            <div class="day-slots">
+                                <div class="appointment-card" style="top: 150px; height: 60px;">
+                                    <p class="appointment-time">12:30 - 13:30</p>
+                                    <p class="appointment-name">Nguyễn Thị Hương</p>
+                                    <p class="appointment-service">Massage mặt</p>
+                                </div>
+                            </div>
+                            <!-- Tuesday -->
+                            <div class="day-slots">
+                                <div class="appointment-card" style="top: 60px; height: 90px;">
+                                    <p class="appointment-time">10:00 - 11:30</p>
+                                    <p class="appointment-name">Lê Văn Nam</p>
+                                    <p class="appointment-service">Massage toàn thân</p>
+                                </div>
+                            </div>
+                            <!-- Wednesday -->
+                            <div class="day-slots"></div>
+                            <!-- Thursday -->
+                            <div class="day-slots">
+                                <div class="appointment-card" style="top: 300px; height: 60px;">
+                                    <p class="appointment-time">15:00 - 16:00</p>
+                                    <p class="appointment-name">Trần Minh Anh</p>
+                                    <p class="appointment-service">Chăm sóc da</p>
+                                </div>
+                            </div>
+                            <!-- Friday -->
+                            <div class="day-slots"></div>
+                            <!-- Saturday -->
+                            <div class="day-slots">
+                                <div class="appointment-card" style="top: 120px; height: 120px;">
+                                    <p class="appointment-time">11:00 - 13:00</p>
+                                    <p class="appointment-name">Phạm Văn Đức</p>
+                                    <p class="appointment-service">Spa trọn gói</p>
+                                </div>
+                            </div>
+                            <!-- Sunday -->
+                            <div class="day-slots">
+                                <div class="appointment-card" style="top: 360px; height: 90px;">
+                                    <p class="appointment-time">16:00 - 17:30</p>
+                                    <p class="appointment-name">Nguyễn Minh Tuấn</p>
+                                    <p class="appointment-service">Massage vai gáy</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day View -->
+                <div class="calendar-view day-view" id="dayView">
+                    <div class="calendar-header">
+                        <div class="time-column">Giờ</div>
+                        <div class="day-column full-width">Thứ 4<br>12/05/2023</div>
+                    </div>
+                    <div class="calendar-body">
+                        <div class="time-slots">
+                            <div class="time-slot">9:00</div>
+                            <div class="time-slot">9:30</div>
+                            <div class="time-slot">10:00</div>
+                            <div class="time-slot">10:30</div>
+                            <div class="time-slot">11:00</div>
+                            <div class="time-slot">11:30</div>
+                            <div class="time-slot">12:00</div>
+                            <div class="time-slot">12:30</div>
+                            <div class="time-slot">13:00</div>
+                            <div class="time-slot">13:30</div>
+                            <div class="time-slot">14:00</div>
+                            <div class="time-slot">14:30</div>
+                            <div class="time-slot">15:00</div>
+                            <div class="time-slot">15:30</div>
+                            <div class="time-slot">16:00</div>
+                            <div class="time-slot">16:30</div>
+                            <div class="time-slot">17:00</div>
+                            <div class="time-slot">17:30</div>
+                            <div class="time-slot">18:00</div>
+                        </div>
+                        <div class="day-column-content full-width">
+                            <div class="day-slots full-width">
+                                <!-- No appointments for this day -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- List View -->
+                <div class="calendar-view list-view" id="listView">
+                    <table class="appointments-table">
+                        <thead>
+                            <tr>
+                                <th>Ngày</th>
+                                <th>Giờ</th>
+                                <th>Khách hàng</th>
+                                <th>Dịch vụ</th>
+                                <th>Nhân viên</th>
+                                <th>Trạng thái</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="appointmentTableBody">
+                            <tr>
+                                <td>10/05/2023</td>
+                                <td>12:30 - 13:30</td>
+                                <td>Nguyễn Thị Hương</td>
+                                <td>Massage mặt</td>
+                                <td>Trần Mai</td>
+                                <td><span class="status pending">Chờ</span></td>
+                                <td class="actions">
+                                    <button class="edit-btn" data-id="A001"><i class="fas fa-edit"></i></button>
+                                    <button class="delete-btn" data-id="A001"><i class="fas fa-trash"></i></button>
+                                    <button class="complete-btn" data-id="A001"><i class="fas fa-check"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>11/05/2023</td>
+                                <td>10:00 - 11:30</td>
+                                <td>Lê Văn Nam</td>
+                                <td>Massage toàn thân</td>
+                                <td>Phạm Thảo</td>
+                                <td><span class="status pending">Chờ</span></td>
+                                <td class="actions">
+                                    <button class="edit-btn" data-id="A002"><i class="fas fa-edit"></i></button>
+                                    <button class="delete-btn" data-id="A002"><i class="fas fa-trash"></i></button>
+                                    <button class="complete-btn" data-id="A002"><i class="fas fa-check"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>13/05/2023</td>
+                                <td>15:00 - 16:00</td>
+                                <td>Trần Minh Anh</td>
+                                <td>Chăm sóc da</td>
+                                <td>Hoàng Linh</td>
+                                <td><span class="status pending">Chờ</span></td>
+                                <td class="actions">
+                                    <button class="edit-btn" data-id="A003"><i class="fas fa-edit"></i></button>
+                                    <button class="delete-btn" data-id="A003"><i class="fas fa-trash"></i></button>
+                                    <button class="complete-btn" data-id="A003"><i class="fas fa-check"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>15/05/2023</td>
+                                <td>11:00 - 13:00</td>
+                                <td>Phạm Văn Đức</td>
+                                <td>Spa trọn gói</td>
+                                <td>Nguyễn Hà</td>
+                                <td><span class="status pending">Chờ</span></td>
+                                <td class="actions">
+                                    <button class="edit-btn" data-id="A004"><i class="fas fa-edit"></i></button>
+                                    <button class="delete-btn" data-id="A004"><i class="fas fa-trash"></i></button>
+                                    <button class="complete-btn" data-id="A004"><i class="fas fa-check"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>16/05/2023</td>
+                                <td>16:00 - 17:30</td>
+                                <td>Nguyễn Minh Tuấn</td>
+                                <td>Massage vai gáy</td>
+                                <td>Phạm Thảo</td>
+                                <td><span class="status pending">Chờ</span></td>
+                                <td class="actions">
+                                    <button class="edit-btn" data-id="A005"><i class="fas fa-edit"></i></button>
+                                    <button class="delete-btn" data-id="A005"><i class="fas fa-trash"></i></button>
+                                    <button class="complete-btn" data-id="A005"><i class="fas fa-check"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Appointment Modal -->
+            <div class="modal" id="appointmentModal">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <h2 id="appointmentModalTitle">Thêm lịch hẹn mới</h2>
+                    <form id="appointmentForm">
+                        <div class="form-group">
+                            <label for="appointmentCustomer">Khách hàng:</label>
+                            <select id="appointmentCustomer" required>
+                                <option value="">-- Chọn khách hàng --</option>
+                                <option value="KH001">Nguyễn Thị Hương</option>
+                                <option value="KH002">Lê Văn Nam</option>
+                                <option value="KH003">Trần Minh Anh</option>
+                                <option value="KH004">Phạm Văn Đức</option>
+                                <option value="KH005">Nguyễn Minh Tuấn</option>
+                            </select>
+                            <button type="button" id="newCustomerBtn">Thêm mới</button>
+                        </div>
+                        <div class="form-group">
+                            <label for="appointmentDate">Ngày:</label>
+                            <input type="date" id="appointmentDate" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <label for="appointmentStartTime">Giờ bắt đầu:</label>
+                                <input type="time" id="appointmentStartTime" required>
+                            </div>
+                            <div class="form-group half">
+                                <label for="appointmentEndTime">Giờ kết thúc:</label>
+                                <input type="time" id="appointmentEndTime" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="appointmentService">Dịch vụ:</label>
+                            <select id="appointmentService" required>
+                                <option value="">-- Chọn dịch vụ --</option>
+                                <option value="massage_mat">Massage mặt</option>
+                                <option value="massage_toan_than">Massage toàn thân</option>
+                                <option value="cham_soc_da">Chăm sóc da</option>
+                                <option value="spa_tron_goi">Spa trọn gói</option>
+                                <option value="massage_vai_gay">Massage vai gáy</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="appointmentStaff">Nhân viên:</label>
+                            <select id="appointmentStaff" required>
+                                <option value="">-- Chọn nhân viên --</option>
+                                <option value="NV001">Trần Mai</option>
+                                <option value="NV002">Phạm Thảo</option>
+                                <option value="NV003">Hoàng Linh</option>
+                                <option value="NV004">Nguyễn Hà</option>
+                                <option value="NV005">Vũ Quỳnh</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="appointmentNotes">Ghi chú:</label>
+                            <textarea id="appointmentNotes"></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="cancel-btn" id="cancelAppointmentBtn">Hủy</button>
+                            <button type="submit" class="save-btn">Lưu</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Conflict Modal -->
+            <div class="modal" id="conflictModal">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <h2>Cảnh báo trùng lịch</h2>
+                    <div class="conflict-message">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <p>Lịch hẹn bị trùng với các lịch hẹn sau:</p>
+                        <ul id="conflictList">
+                            <li>15:00 - 16:00 | Trần Minh Anh | Chăm sóc da | Hoàng Linh</li>
+                        </ul>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="cancel-btn" id="backToEditBtn">Quay lại chỉnh sửa</button>
+                        <button type="button" class="confirm-btn" id="confirmAnywayBtn">Vẫn xác nhận</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/appointments.js"></script>
+</body>
+</html> 

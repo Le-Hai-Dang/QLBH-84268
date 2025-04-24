@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Spa Mini - Nhân Viên</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/staff.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>Spa Mini</h2>
+            </div>
+            <nav class="menu">
+                <ul>
+                    <li data-page="dashboard"><i class="fas fa-tachometer-alt"></i> Tổng quan</li>
+                    <li data-page="customers"><i class="fas fa-users"></i> Khách hàng</li>
+                    <li data-page="appointments"><i class="fas fa-calendar-alt"></i> Lịch hẹn</li>
+                    <li class="active" data-page="staff"><i class="fas fa-user-tie"></i> Nhân viên</li>
+                    <li data-page="statistics"><i class="fas fa-chart-bar"></i> Thống kê</li>
+                </ul>
+            </nav>
+            <div class="user-info">
+                <img src="img/avatar-default.png" alt="User Avatar">
+                <div>
+                    <p class="name">Admin</p>
+                    <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="staffSearch" placeholder="Tìm kiếm nhân viên...">
+                </div>
+                <div class="date-time">
+                    <span id="currentDate">10/05/2023</span>
+                    <span id="currentTime">15:30</span>
+                </div>
+            </header>
+
+            <!-- Staff Content -->
+            <div class="content-container">
+                <div class="page-header">
+                    <h1>Quản lý nhân viên</h1>
+                    <button class="add-button" id="addStaffBtn">
+                        <i class="fas fa-plus"></i> Thêm nhân viên
+                    </button>
+                </div>
+
+                <div class="staff-container">
+                    <div class="staff-list">
+                        <table class="staff-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Họ tên</th>
+                                    <th>Điện thoại</th>
+                                    <th>Vị trí</th>
+                                    <th>Số ca làm việc</th>
+                                    <th>Trạng thái</th>
+                                    <th>Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="staffTableBody">
+                                <tr>
+                                    <td>NV001</td>
+                                    <td>Trần Mai</td>
+                                    <td>0912345678</td>
+                                    <td>Kỹ thuật viên massage</td>
+                                    <td>16 ca/tháng</td>
+                                    <td><span class="status active">Đang làm việc</span></td>
+                                    <td class="actions">
+                                        <button class="edit-btn" data-id="NV001"><i class="fas fa-edit"></i></button>
+                                        <button class="delete-btn" data-id="NV001"><i class="fas fa-trash"></i></button>
+                                        <button class="schedule-btn" data-id="NV001"><i class="fas fa-calendar-alt"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>NV002</td>
+                                    <td>Phạm Thảo</td>
+                                    <td>0987654321</td>
+                                    <td>Kỹ thuật viên spa</td>
+                                    <td>14 ca/tháng</td>
+                                    <td><span class="status active">Đang làm việc</span></td>
+                                    <td class="actions">
+                                        <button class="edit-btn" data-id="NV002"><i class="fas fa-edit"></i></button>
+                                        <button class="delete-btn" data-id="NV002"><i class="fas fa-trash"></i></button>
+                                        <button class="schedule-btn" data-id="NV002"><i class="fas fa-calendar-alt"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>NV003</td>
+                                    <td>Hoàng Linh</td>
+                                    <td>0969696969</td>
+                                    <td>Chuyên viên chăm sóc da</td>
+                                    <td>12 ca/tháng</td>
+                                    <td><span class="status active">Đang làm việc</span></td>
+                                    <td class="actions">
+                                        <button class="edit-btn" data-id="NV003"><i class="fas fa-edit"></i></button>
+                                        <button class="delete-btn" data-id="NV003"><i class="fas fa-trash"></i></button>
+                                        <button class="schedule-btn" data-id="NV003"><i class="fas fa-calendar-alt"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>NV004</td>
+                                    <td>Nguyễn Hà</td>
+                                    <td>0901234567</td>
+                                    <td>Kỹ thuật viên massage</td>
+                                    <td>10 ca/tháng</td>
+                                    <td><span class="status active">Đang làm việc</span></td>
+                                    <td class="actions">
+                                        <button class="edit-btn" data-id="NV004"><i class="fas fa-edit"></i></button>
+                                        <button class="delete-btn" data-id="NV004"><i class="fas fa-trash"></i></button>
+                                        <button class="schedule-btn" data-id="NV004"><i class="fas fa-calendar-alt"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>NV005</td>
+                                    <td>Vũ Quỳnh</td>
+                                    <td>0978787878</td>
+                                    <td>Lễ tân</td>
+                                    <td>22 ca/tháng</td>
+                                    <td><span class="status inactive">Nghỉ phép</span></td>
+                                    <td class="actions">
+                                        <button class="edit-btn" data-id="NV005"><i class="fas fa-edit"></i></button>
+                                        <button class="delete-btn" data-id="NV005"><i class="fas fa-trash"></i></button>
+                                        <button class="schedule-btn" data-id="NV005"><i class="fas fa-calendar-alt"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="staff-statistics">
+                        <h2>Thống kê nhân viên</h2>
+                        <div class="stat-cards">
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3>Tổng nhân viên</h3>
+                                    <p class="stat-count">5</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-user-check"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3>Đang làm việc</h3>
+                                    <p class="stat-count">4</p>
+                                </div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-icon">
+                                    <i class="fas fa-user-clock"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <h3>Nghỉ phép</h3>
+                                    <p class="stat-count">1</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="shift-breakdown">
+                            <h3>Phân bổ ca làm việc</h3>
+                            <div class="shift-chart">
+                                <div class="chart-bar">
+                                    <div class="bar-label">Trần Mai</div>
+                                    <div class="bar-container">
+                                        <div class="bar" style="width: 80%;">16 ca</div>
+                                    </div>
+                                </div>
+                                <div class="chart-bar">
+                                    <div class="bar-label">Phạm Thảo</div>
+                                    <div class="bar-container">
+                                        <div class="bar" style="width: 70%;">14 ca</div>
+                                    </div>
+                                </div>
+                                <div class="chart-bar">
+                                    <div class="bar-label">Hoàng Linh</div>
+                                    <div class="bar-container">
+                                        <div class="bar" style="width: 60%;">12 ca</div>
+                                    </div>
+                                </div>
+                                <div class="chart-bar">
+                                    <div class="bar-label">Nguyễn Hà</div>
+                                    <div class="bar-container">
+                                        <div class="bar" style="width: 50%;">10 ca</div>
+                                    </div>
+                                </div>
+                                <div class="chart-bar">
+                                    <div class="bar-label">Vũ Quỳnh</div>
+                                    <div class="bar-container">
+                                        <div class="bar" style="width: 100%;">22 ca</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Staff Modal -->
+            <div class="modal" id="staffModal">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <h2 id="staffModalTitle">Thêm nhân viên mới</h2>
+                    <form id="staffForm">
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <label for="staffFirstName">Họ:</label>
+                                <input type="text" id="staffFirstName" required>
+                            </div>
+                            <div class="form-group half">
+                                <label for="staffLastName">Tên:</label>
+                                <input type="text" id="staffLastName" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group half">
+                                <label for="staffPhone">Điện thoại:</label>
+                                <input type="tel" id="staffPhone" required>
+                            </div>
+                            <div class="form-group half">
+                                <label for="staffEmail">Email:</label>
+                                <input type="email" id="staffEmail">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="staffPosition">Vị trí:</label>
+                            <select id="staffPosition" required>
+                                <option value="">-- Chọn vị trí --</option>
+                                <option value="massage">Kỹ thuật viên massage</option>
+                                <option value="spa">Kỹ thuật viên spa</option>
+                                <option value="skincare">Chuyên viên chăm sóc da</option>
+                                <option value="receptionist">Lễ tân</option>
+                                <option value="manager">Quản lý</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="staffStatus">Trạng thái:</label>
+                            <select id="staffStatus" required>
+                                <option value="active">Đang làm việc</option>
+                                <option value="inactive">Nghỉ phép</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="staffAddress">Địa chỉ:</label>
+                            <input type="text" id="staffAddress">
+                        </div>
+                        <div class="form-group">
+                            <label for="staffNotes">Ghi chú:</label>
+                            <textarea id="staffNotes"></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="cancel-btn" id="cancelStaffBtn">Hủy</button>
+                            <button type="submit" class="save-btn">Lưu</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Staff Schedule Modal -->
+            <div class="modal" id="scheduleModal">
+                <div class="modal-content wide-modal">
+                    <span class="close-modal">&times;</span>
+                    <h2>Lịch làm việc - <span id="scheduleStaffName">Trần Mai</span></h2>
+                    
+                    <div class="schedule-month-selector">
+                        <button id="prevMonth"><i class="fas fa-chevron-left"></i></button>
+                        <h3 id="currentMonth">Tháng 5/2023</h3>
+                        <button id="nextMonth"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+
+                    <div class="schedule-grid">
+                        <div class="schedule-header">
+                            <div>CN</div>
+                            <div>T2</div>
+                            <div>T3</div>
+                            <div>T4</div>
+                            <div>T5</div>
+                            <div>T6</div>
+                            <div>T7</div>
+                        </div>
+                        <div class="schedule-days">
+                            <div class="day-cell other-month">30</div>
+                            <div class="day-cell">1
+                                <div class="shift morning">S</div>
+                            </div>
+                            <div class="day-cell">2</div>
+                            <div class="day-cell">3
+                                <div class="shift afternoon">C</div>
+                            </div>
+                            <div class="day-cell">4</div>
+                            <div class="day-cell">5
+                                <div class="shift morning">S</div>
+                            </div>
+                            <div class="day-cell">6</div>
+                            <div class="day-cell">7
+                                <div class="shift afternoon">C</div>
+                            </div>
+                            <div class="day-cell">8</div>
+                            <div class="day-cell">9
+                                <div class="shift morning">S</div>
+                            </div>
+                            <div class="day-cell">10
+                                <div class="shift afternoon">C</div>
+                            </div>
+                            <div class="day-cell">11</div>
+                            <div class="day-cell">12
+                                <div class="shift morning">S</div>
+                            </div>
+                            <div class="day-cell">13</div>
+                            <div class="day-cell">14</div>
+                            <div class="day-cell current-day">15
+                                <div class="shift morning">S</div>
+                            </div>
+                            <div class="day-cell">16
+                                <div class="shift afternoon">C</div>
+                            </div>
+                            <div class="day-cell">17</div>
+                            <div class="day-cell">18
+                                <div class="shift morning">S</div>
+                            </div>
+                            <div class="day-cell">19</div>
+                            <div class="day-cell">20
+                                <div class="shift morning">S</div>
+                            </div>
+                            <div class="day-cell">21</div>
+                            <div class="day-cell">22
+                                <div class="shift afternoon">C</div>
+                            </div>
+                            <div class="day-cell">23</div>
+                            <div class="day-cell">24
+                                <div class="shift morning">S</div>
+                            </div>
+                            <div class="day-cell">25</div>
+                            <div class="day-cell">26
+                                <div class="shift afternoon">C</div>
+                            </div>
+                            <div class="day-cell">27</div>
+                            <div class="day-cell">28</div>
+                            <div class="day-cell">29
+                                <div class="shift morning">S</div>
+                            </div>
+                            <div class="day-cell">30</div>
+                            <div class="day-cell">31
+                                <div class="shift afternoon">C</div>
+                            </div>
+                            <div class="day-cell other-month">1</div>
+                            <div class="day-cell other-month">2</div>
+                            <div class="day-cell other-month">3</div>
+                        </div>
+                    </div>
+
+                    <div class="schedule-legend">
+                        <div class="legend-item">
+                            <div class="shift-sample morning"></div>
+                            <span>S: Ca sáng (8:00 - 14:00)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="shift-sample afternoon"></div>
+                            <span>C: Ca chiều (14:00 - 20:00)</span>
+                        </div>
+                    </div>
+
+                    <div class="schedule-actions">
+                        <button id="addShiftBtn" class="add-button">
+                            <i class="fas fa-plus"></i> Thêm ca làm việc
+                        </button>
+                        <button id="closeScheduleBtn" class="cancel-btn">Đóng</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Add Shift Modal -->
+            <div class="modal" id="addShiftModal">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <h2>Thêm ca làm việc</h2>
+                    <form id="shiftForm">
+                        <div class="form-group">
+                            <label for="shiftDate">Ngày:</label>
+                            <input type="date" id="shiftDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="shiftType">Loại ca:</label>
+                            <select id="shiftType" required>
+                                <option value="morning">Ca sáng (8:00 - 14:00)</option>
+                                <option value="afternoon">Ca chiều (14:00 - 20:00)</option>
+                                <option value="fullday">Cả ngày (8:00 - 20:00)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="shiftNotes">Ghi chú:</label>
+                            <textarea id="shiftNotes"></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="cancel-btn" id="cancelShiftBtn">Hủy</button>
+                            <button type="submit" class="save-btn">Lưu</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/staff.js"></script>
+</body>
+</html> 

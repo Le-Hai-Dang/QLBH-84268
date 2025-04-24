@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Spa Mini - Khách Hàng</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/customers.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>Spa Mini</h2>
+            </div>
+            <nav class="menu">
+                <ul>
+                    <li data-page="dashboard"><i class="fas fa-tachometer-alt"></i> Tổng quan</li>
+                    <li class="active" data-page="customers"><i class="fas fa-users"></i> Khách hàng</li>
+                    <li data-page="appointments"><i class="fas fa-calendar-alt"></i> Lịch hẹn</li>
+                    <li data-page="staff"><i class="fas fa-user-tie"></i> Nhân viên</li>
+                    <li data-page="statistics"><i class="fas fa-chart-bar"></i> Thống kê</li>
+                </ul>
+            </nav>
+            <div class="user-info">
+                <img src="img/avatar-default.png" alt="User Avatar">
+                <div>
+                    <p class="name">Admin</p>
+                    <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="customerSearch" placeholder="Tìm kiếm khách hàng...">
+                </div>
+                <div class="date-time">
+                    <span id="currentDate">10/05/2023</span>
+                    <span id="currentTime">15:30</span>
+                </div>
+            </header>
+
+            <!-- Customers Content -->
+            <div class="content-container">
+                <div class="page-header">
+                    <h1>Quản lý khách hàng</h1>
+                    <button class="add-button" id="addCustomerBtn">
+                        <i class="fas fa-plus"></i> Thêm khách hàng
+                    </button>
+                </div>
+
+                <div class="customers-table-container">
+                    <table class="customers-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Họ tên</th>
+                                <th>Số điện thoại</th>
+                                <th>Ngày sinh</th>
+                                <th>Lịch sử đến spa</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="customerTableBody">
+                            <tr>
+                                <td>KH001</td>
+                                <td>Nguyễn Thị Hương</td>
+                                <td>0912345678</td>
+                                <td>15/08/1990</td>
+                                <td>5 lần</td>
+                                <td class="actions">
+                                    <button class="edit-btn" data-id="KH001"><i class="fas fa-edit"></i></button>
+                                    <button class="delete-btn" data-id="KH001"><i class="fas fa-trash"></i></button>
+                                    <button class="view-btn" data-id="KH001"><i class="fas fa-eye"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>KH002</td>
+                                <td>Lê Văn Nam</td>
+                                <td>0987654321</td>
+                                <td>22/04/1985</td>
+                                <td>3 lần</td>
+                                <td class="actions">
+                                    <button class="edit-btn" data-id="KH002"><i class="fas fa-edit"></i></button>
+                                    <button class="delete-btn" data-id="KH002"><i class="fas fa-trash"></i></button>
+                                    <button class="view-btn" data-id="KH002"><i class="fas fa-eye"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>KH003</td>
+                                <td>Trần Minh Anh</td>
+                                <td>0969696969</td>
+                                <td>10/11/1992</td>
+                                <td>7 lần</td>
+                                <td class="actions">
+                                    <button class="edit-btn" data-id="KH003"><i class="fas fa-edit"></i></button>
+                                    <button class="delete-btn" data-id="KH003"><i class="fas fa-trash"></i></button>
+                                    <button class="view-btn" data-id="KH003"><i class="fas fa-eye"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Customer Modal -->
+            <div class="modal" id="customerModal">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <h2 id="modalTitle">Thêm khách hàng mới</h2>
+                    <form id="customerForm">
+                        <div class="form-group">
+                            <label for="customerName">Họ tên:</label>
+                            <input type="text" id="customerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerPhone">Số điện thoại:</label>
+                            <input type="tel" id="customerPhone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="customerBirthday">Ngày sinh:</label>
+                            <input type="date" id="customerBirthday">
+                        </div>
+                        <div class="form-group">
+                            <label for="customerAddress">Địa chỉ:</label>
+                            <input type="text" id="customerAddress">
+                        </div>
+                        <div class="form-group">
+                            <label for="customerNotes">Ghi chú:</label>
+                            <textarea id="customerNotes"></textarea>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="cancel-btn" id="cancelCustomerBtn">Hủy</button>
+                            <button type="submit" class="save-btn">Lưu</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Customer Details Modal -->
+            <div class="modal" id="customerDetailsModal">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <h2>Chi tiết khách hàng</h2>
+                    <div class="customer-details">
+                        <div class="customer-info">
+                            <h3 id="detailCustomerName">Nguyễn Thị Hương</h3>
+                            <p><strong>ID:</strong> <span id="detailCustomerId">KH001</span></p>
+                            <p><strong>Số điện thoại:</strong> <span id="detailCustomerPhone">0912345678</span></p>
+                            <p><strong>Ngày sinh:</strong> <span id="detailCustomerBirthday">15/08/1990</span></p>
+                            <p><strong>Địa chỉ:</strong> <span id="detailCustomerAddress">123 Đường ABC, Quận 1, TP.HCM</span></p>
+                            <p><strong>Ghi chú:</strong> <span id="detailCustomerNotes">Khách hàng thường xuyên</span></p>
+                        </div>
+                        <div class="customer-history">
+                            <h3>Lịch sử đến spa</h3>
+                            <table class="history-table">
+                                <thead>
+                                    <tr>
+                                        <th>Ngày</th>
+                                        <th>Dịch vụ</th>
+                                        <th>Nhân viên</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="historyTableBody">
+                                    <tr>
+                                        <td>10/05/2023</td>
+                                        <td>Massage mặt</td>
+                                        <td>Trần Mai</td>
+                                    </tr>
+                                    <tr>
+                                        <td>25/04/2023</td>
+                                        <td>Chăm sóc da</td>
+                                        <td>Hoàng Linh</td>
+                                    </tr>
+                                    <tr>
+                                        <td>05/04/2023</td>
+                                        <td>Massage mặt</td>
+                                        <td>Trần Mai</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="cancel-btn close-details-btn">Đóng</button>
+                        <button type="button" class="add-appointment-btn">Đặt lịch hẹn</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/customers.js"></script>
+</body>
+</html> 

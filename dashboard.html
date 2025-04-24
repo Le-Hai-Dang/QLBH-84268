@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Spa Mini - Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>Spa Mini</h2>
+            </div>
+            <nav class="menu">
+                <ul>
+                    <li class="active" data-page="dashboard"><i class="fas fa-tachometer-alt"></i> Tổng quan</li>
+                    <li data-page="customers"><i class="fas fa-users"></i> Khách hàng</li>
+                    <li data-page="appointments"><i class="fas fa-calendar-alt"></i> Lịch hẹn</li>
+                    <li data-page="staff"><i class="fas fa-user-tie"></i> Nhân viên</li>
+                    <li data-page="statistics"><i class="fas fa-chart-bar"></i> Thống kê</li>
+                </ul>
+            </nav>
+            <div class="user-info">
+                <img src="img/avatar-default.png" alt="User Avatar">
+                <div>
+                    <p class="name">Admin</p>
+                    <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Đăng xuất</a>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Tìm kiếm...">
+                </div>
+                <div class="date-time">
+                    <span id="currentDate">10/05/2023</span>
+                    <span id="currentTime">15:30</span>
+                </div>
+            </header>
+
+            <!-- Content Pages -->
+            <div class="content-container">
+                <!-- Dashboard Page -->
+                <div class="page active" id="dashboard-page">
+                    <h1>Tổng quan</h1>
+                    <div class="dashboard-stats">
+                        <div class="stat-card">
+                            <div class="stat-icon customers-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Khách hàng</h3>
+                                <p class="stat-count">120</p>
+                                <p class="stat-label">Tổng số khách hàng</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon appointments-icon">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Lịch hẹn</h3>
+                                <p class="stat-count">15</p>
+                                <p class="stat-label">Hôm nay</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon staff-icon">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Nhân viên</h3>
+                                <p class="stat-count">5</p>
+                                <p class="stat-label">Đang làm việc</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="upcoming-appointments">
+                        <h2>Lịch hẹn sắp tới</h2>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Thời gian</th>
+                                    <th>Khách hàng</th>
+                                    <th>Dịch vụ</th>
+                                    <th>Nhân viên</th>
+                                    <th>Trạng thái</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>15:30 - 16:30</td>
+                                    <td>Nguyễn Thị Hương</td>
+                                    <td>Massage mặt</td>
+                                    <td>Trần Mai</td>
+                                    <td><span class="status pending">Sắp tới</span></td>
+                                </tr>
+                                <tr>
+                                    <td>16:00 - 17:30</td>
+                                    <td>Lê Văn Nam</td>
+                                    <td>Massage toàn thân</td>
+                                    <td>Phạm Thảo</td>
+                                    <td><span class="status pending">Sắp tới</span></td>
+                                </tr>
+                                <tr>
+                                    <td>17:00 - 18:00</td>
+                                    <td>Trần Minh Anh</td>
+                                    <td>Chăm sóc da</td>
+                                    <td>Hoàng Linh</td>
+                                    <td><span class="status pending">Sắp tới</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Customers Page -->
+                <div class="page" id="customers-page">
+                    <!-- Customers content will be loaded dynamically -->
+                </div>
+
+                <!-- Appointments Page -->
+                <div class="page" id="appointments-page">
+                    <!-- Appointments content will be loaded dynamically -->
+                </div>
+
+                <!-- Staff Page -->
+                <div class="page" id="staff-page">
+                    <!-- Staff content will be loaded dynamically -->
+                </div>
+
+                <!-- Statistics Page -->
+                <div class="page" id="statistics-page">
+                    <!-- Statistics content will be loaded dynamically -->
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html> 
